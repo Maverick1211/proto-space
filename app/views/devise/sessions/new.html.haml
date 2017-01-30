@@ -1,0 +1,20 @@
+.container
+  .form-signin
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      %h2.form-signin-heading Please sign in
+      .sr-only
+        = f.label :inputEmail, 'Email address'
+      #inputEmail.form-control
+        = f.email_field :email, placeholder: 'Email address', required: '',autofocus: true
+      .sr-only
+        = f.label :inputPassword, 'Password'
+      #inputPassword.form-control
+        = f.password_field :password, placeholder: 'Password', required: '', autocomplete: "off"
+      .checkbox
+        = f.check_box :remember_me, value: 'remember-me'
+        %label remember me
+      = f.submit 'Sign in', class: 'btn btn-lg btn-primary btn-block'
+  .text-center
+    %p
+      Not a member?
+      = link_to 'Sign up now', new_user_registration_path

@@ -475,7 +475,6 @@ body {
 
 .user-new {
   padding-top: 20px;
-
   input[type="email"],
   input[type="text"],
   input[type="password"],
@@ -550,7 +549,7 @@ body {
 }
 
 .form-signin {
-  max-width: 330px;
+  max-width: 130px;
   padding: 15px;
   margin: 0 auto;
 
@@ -624,4 +623,53 @@ body {
 .tag-project {
   height: 10px;
   text-align: center;
+}
+
+// 以降追記
+.text-center{
+  text-align: center;
+}
+.user-new{
+  margin: 0 auto;
+  width: 360px;
+}
+
+li{
+  list-style: none;
+}
+.nav.navbar-nav.navbar-right{
+  float: right !important;
+}
+
+.btn.btn-primary.navbar-btn{
+  border: 1px solid #eee;
+  min-width: 88px;
+  padding: 10px 14px;
+}
+
+.container{
+  width: 1170px;
+  margin: 0 auto;
+}
+
+body{
+  padding-top: 0px;
+}
+
+.navbar-toggle{
+  float: right;
+}
+
+.navbar-brand{
+  float: left;
+}
+
+.clearfix:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.dropdown{
+  float: left;
 }
