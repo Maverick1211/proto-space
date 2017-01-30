@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def update
     if @user == current_user
       @user.update(user_params)
+      redirect_to root_path
     else
       redirect_to new_user_session_path
     end
