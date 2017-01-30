@@ -3,15 +3,11 @@
     %a.navbar-brand{ href: '/' }
       = image_tag('logo.png', alt: 'PROTO TYPE - SHARE THE PROTOTYPE', height: '36px')
     .navbar-collapse.collapse.navbar-responsive-collapse
-    %button.navbar-toggle{type: 'button', data: { toggle: 'collapse' }, data: { target:'.navbar-responsive-collapse'}}
+    %button.navbar-toggle{ type: 'button', data: { toggle: 'collapse' }, data: { target:'.navbar-responsive-collapse' } }
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    - unless current_user
-      %ul.nav.navbar-nav.navbar-right
-        %li.btn.btn-primary.navbar-btn
-          = link_to 'Get Started'
-    -else
+    - if current_user
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
           %a.dropdown-toggle{ aria: { expanded: 'false' }, data: { toggle: 'dropdown' }, role: 'button'}
@@ -24,3 +20,7 @@
               = link_to 'logout', destroy_user_session_path, method: :delete
         %li.btn.btn-primary.navbar-btn
           = link_to 'New Proto'
+    - else current_user
+      %ul.nav.navbar-nav.navbar-right
+        %li.btn.btn-primary.navbar-btn
+          = link_to 'Get Started'
