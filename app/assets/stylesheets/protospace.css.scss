@@ -475,7 +475,6 @@ body {
 
 .user-new {
   padding-top: 20px;
-
   input[type="email"],
   input[type="text"],
   input[type="password"],
@@ -626,6 +625,11 @@ body {
   text-align: center;
 }
 
+// 以降追記
 .text-center{
   text-align: center;
+}
+.user-new{
+  margin: 0 auto;
+  width: 360px;
 }
