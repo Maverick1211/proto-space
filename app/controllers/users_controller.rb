@@ -9,9 +9,9 @@ class UsersController < ApplicationController
   def update
     if @user == current_user
       @user.update(user_params)
-      redirect_to root_path
+      redirect_to root_path, notice: 'you successfully updated user'
     else
-      redirect_to new_user_session_path
+      redirect_to new_user_session_path, alert: 'please edit again'
     end
   end
 
