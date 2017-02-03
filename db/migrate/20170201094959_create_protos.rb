@@ -4,7 +4,7 @@ class CreateProtos < ActiveRecord::Migration[5.0]
       t.string :title, null: false
       t.string :catchcopy, null: false
       t.text :concept, null: false
-      t.references :user, null: false
+      t.references :user, index: true
       t.timestamps
     end
   end
