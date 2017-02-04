@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129054051) do
+ActiveRecord::Schema.define(version: 20170201101048) do
+
+  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "image"
+    t.integer  "role",       default: 0, null: false
+    t.integer  "proto_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["proto_id"], name: "index_images_on_proto_id", using: :btree
+    t.index ["role"], name: "index_images_on_role", using: :btree
+  end
+
+  create_table "protos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                    null: false
+    t.string   "catchcopy",                null: false
+    t.text     "concept",    limit: 65535, null: false
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["title"], name: "index_protos_on_title", using: :btree
+    t.index ["user_id"], name: "index_protos_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                                default: "", null: false
