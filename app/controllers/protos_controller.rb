@@ -11,7 +11,7 @@ class ProtosController < ApplicationController
   end
 
   def create
-    @proto = Proto.new(proto_params)
+    @proto = current_user.protos.new(proto_params)
     if @proto.save
       redirect_to root_path, notice: 'you successfully created proto'
     else
@@ -28,6 +28,6 @@ class ProtosController < ApplicationController
       :catchcopy,
       :concept,
       images_attributes: [:id, :image, :role]
-      ).merge(user_id: current_user.id)
+      )
   end
 end
