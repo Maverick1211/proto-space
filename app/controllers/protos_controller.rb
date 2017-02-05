@@ -7,9 +7,7 @@ class ProtosController < ApplicationController
 
   def new
     @proto = Proto.new
-    num = 4
-    @images = []
-    num.times{ @images << @proto.images.build }
+    @image = Image.new
   end
 
   def create
@@ -17,11 +15,13 @@ class ProtosController < ApplicationController
     if @proto.save
       redirect_to root_path, notice: 'you successfully created proto'
     else
-      redirect_to new_proto_path, notice: 'create proto again'
+      render 'new'
+      flash[:notice] = 'create proto again'
     end
   end
 
   private
+
   def proto_params
     params.require(:proto).permit(
       :title,
