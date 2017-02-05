@@ -1,0 +1,16 @@
+.col-sm-4.col-md-3.proto-content
+  .thumbnail
+    %image{src: "/uploads/image/image/#{proto.image.id}/#{proto.image[:image]}", class: 'index-main-image'}
+    .caption
+      %h3
+        = link_to "#{proto.title}", proto_path(proto)
+      .proto-meta
+        .proto-user
+          = link_to "by #{proto.user.name}", proto_path(proto)
+        .proto-posted
+          = proto.display_time
+      %ul.proto-tag-list.list-inline
+        %li
+          %a{href: "#", class: "btn btn-default"} iPad
+        %li
+          %a{href: "#", class: "btn btn-default"} wireframe
