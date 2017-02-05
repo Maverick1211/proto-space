@@ -1,4 +1,10 @@
 class ProtosController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
+  def index
+    @protos = Proto.includes(:image).all
+  end
+
   def new
     @proto = Proto.new
     num = 4
