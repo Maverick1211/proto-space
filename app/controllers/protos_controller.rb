@@ -2,12 +2,15 @@ class ProtosController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @protos = Proto.includes(:image).all
+    @protos = Proto.includes(:images).all
   end
 
   def new
     @proto = Proto.new
-    @image = Image.new
+    @proto.images << Image.new(role: :main)
+    3.times do
+      @proto.images << Image.new(role: :sub)
+    end
   end
 
   def create

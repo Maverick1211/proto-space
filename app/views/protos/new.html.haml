@@ -6,18 +6,16 @@
     .row
       .col-md-12
         .cover-image-upload
-          = f.fields_for :images, @image do |m|
+          = f.fields_for :images do |m|
             = m.file_field :image
-            = m.hidden_field :role, value: 'main'
       .col-md-12
         %ul.proto-sub-list.list-group
-        - 3.times do
-          = f.fields_for :images, @image do |s|
+          = f.fields_for :images, @proto.sub_images do |s|
             %li.list-group-item.col-md-4
               .image-upload
                 = s.file_field :image
-        .add_field.image-upload-plus
-          = link_to_add_fields "+", f, :images
+          .add_field.image-upload-plus
+            = link_to_add_fields "+", f, :images
     .row.proto-description
       .col-md-12
         = f.text_field :catchcopy, placeholder: "Catch Copy"
