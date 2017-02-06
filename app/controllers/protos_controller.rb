@@ -7,10 +7,6 @@ class ProtosController < ApplicationController
 
   def new
     @proto = Proto.new
-    @proto.images << Image.new(role: :main)
-    3.times do
-      @proto.images << Image.new(role: :sub)
-    end
   end
 
   def create
