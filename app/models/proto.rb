@@ -5,15 +5,13 @@ class Proto < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, :catchcopy, :concept, presence: true
-  after_initialize :build_main_image, :build_sub_images, if: :new_record?
-
-  SUB_IMAGES_NUMBER= 3
+  after_initialize :build_main_image, :build_sub_images, if: :new_proto?
 
   def sub_images
     images.select(&:sub?)
   end
 
-  def new_record?
+  def new_proto?
     id.nil? && title.nil? && concept.nil? && catchcopy.nil?
   end
 
@@ -24,6 +22,6 @@ class Proto < ApplicationRecord
   end
 
   def build_sub_images
-    SUB_IMAGES_NUMBER.times { images << Image.new(role: :sub) }
+    Settings[:SUB_IMAGES_NUMBER].times { images << Image.new(role: :sub) }
   end
 end
