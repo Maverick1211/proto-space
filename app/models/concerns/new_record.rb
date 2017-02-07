@@ -1,4 +1,4 @@
-module NewRecord
+module ActiveRecordExpander
   extend ActiveSupport::Concern
   included do
     def new_record?(strict = false)
@@ -10,8 +10,6 @@ module NewRecord
         super()
       end
     end
-
-    private
 
     def self.validated_attributes_on(type)
       key =  "#{type.to_s.camelize}Validator"
