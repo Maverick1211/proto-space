@@ -14,7 +14,7 @@ class ProtosController < ApplicationController
     if @proto.save
       redirect_to root_path, notice: 'you successfully created proto'
     else
-      flash[:notice] = 'create proto again'
+      flash.now[:notice] = 'create proto again'
       render 'new'
     end
   end
