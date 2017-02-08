@@ -14,8 +14,10 @@ class ProtosController < ApplicationController
     if @proto.save
       redirect_to root_path, notice: 'you successfully created proto'
     else
+      @proto = Proto.new
+      @proto.assign_attributes(proto_params.except(:images_attributes))
       flash.now[:notice] = 'create proto again'
-      render 'new'
+      render action: :new
     end
   end
 
