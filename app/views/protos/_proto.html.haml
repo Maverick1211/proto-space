@@ -1,0 +1,16 @@
+.col-sm-4.col-md-3.proto-content
+  .thumbnail
+    = image_tag proto.main_image.image_url, class: 'index-main-image'
+    .caption
+      %h3
+        = link_to proto.title, proto_path(proto)
+      .proto-meta
+        .proto-user
+          = link_to "by #{proto.user.name}", proto_path(proto)
+        .proto-posted
+          = proto.created_at.to_s(:customized)
+      %ul.proto-tag-list.list-inline
+        %li
+          %a{href: "#", class: "btn btn-default"} iPad
+        %li
+          %a{href: "#", class: "btn btn-default"} wireframe
