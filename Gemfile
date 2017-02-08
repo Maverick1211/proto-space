@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'carrierwave'
+gem 'jquery-turbolinks'
+gem 'config'
