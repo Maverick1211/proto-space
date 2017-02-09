@@ -6,7 +6,7 @@
     .row
       .col-md-12
         .cover-image-upload
-          = f.fields_for :images do |m|
+          = f.fields_for :images, @proto.main_picture do |m|
             = m.file_field :image, aria: { required:"true" }
       .col-md-12
         %ul.proto-sub-list.list-group

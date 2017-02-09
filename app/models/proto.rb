@@ -5,10 +5,15 @@ class Proto < ApplicationRecord
 
   belongs_to :user
   has_many :images
+  has_many :comments
   has_one :main_image, -> { where role: 'main' }, class_name: 'Image'
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, :catchcopy, :concept, presence: true
+
+  def main_picture
+    images.select(&:main?)
+  end
 
   def sub_images
     images.select(&:sub?)
@@ -17,7 +22,7 @@ class Proto < ApplicationRecord
   private
 
   def build_main_image
-    images << Image.new(role: :main)
+    images << Image.new(role: 'main')
   end
 
   def build_sub_images
