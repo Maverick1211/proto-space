@@ -22,7 +22,7 @@
       = image_tag @proto.main_image.image_url, class: 'img-responsive proto-image'
     .col-md-3
       %ul.proto-sub-list.list-group
-        = render partial: 'sub_images', collection: @proto.sub_images
+        = render partial: 'sub_image', collection: @proto.sub_images
   .row.proto-description
     .col-md-3
       %h4 Catch Copy

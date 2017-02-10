@@ -8,6 +8,7 @@
         .cover-image-upload
           = f.fields_for :images, @proto.main_picture do |m|
             = m.file_field :image, aria: { required:"true" }
+            = m.hidden_field :role
       .col-md-12
         %ul.proto-sub-list.list-group
           = f.fields_for :images, @proto.sub_images do |s|

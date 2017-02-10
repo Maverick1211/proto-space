@@ -5,7 +5,7 @@ class Proto < ApplicationRecord
 
   belongs_to :user
   has_many :images
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_one :main_image, -> { where role: 'main' }, class_name: 'Image'
   accepts_nested_attributes_for :images, allow_destroy: true
 
