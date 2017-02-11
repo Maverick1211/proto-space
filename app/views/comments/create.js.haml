@@ -1,2 +1,3 @@
-$("#comment-list").append("#{escape_javascript(render partial: 'shared/comment', locals: {comment: @comment})}");
+$("#comment-list").append("#{escape_javascript(render partial: 'comment', locals: {comment: @comment})}");
 $("#comment-text").val("");
+$("#comments_count").html("#{@comment.proto.comments.count}");

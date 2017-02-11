@@ -42,9 +42,10 @@
   .row.proto-comments
     %h4.col-md-12   Comments
     %span.num
-      = @proto.comments.count
+      .comments_count#comments_count
+        = @proto.comments.count
     .col-md-8#comment-list
-      = render partial: 'shared/comment', collection: @proto.comments
+      = render @proto.comments
     %h4 Write a comment
     .row
     = form_for [ @proto, @comment ], role: 'form', class: 'form-inline', remote: 'true' do |f|
