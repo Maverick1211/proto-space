@@ -23,7 +23,7 @@ class ProtosController < ApplicationController
 
   def show
     @proto = Proto.find(params[:id])
-    @comment = @proto.comments.build
+    @comment = Comment.new
   end
 
   private
