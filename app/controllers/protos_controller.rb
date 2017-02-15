@@ -32,7 +32,7 @@ class ProtosController < ApplicationController
 
   def update
     @proto = Proto.find(params[:id])
-    if @proto.update
+    if @proto.update(proto_params)
       redirect_to root_path
     else
       redirect_to edit_proto_path(@proto), notice: 'please edit agein'
@@ -42,7 +42,7 @@ class ProtosController < ApplicationController
   def destroy
     @proto = Proto.find(params[:id])
     if @proto.destroy
-      redirect_to root_path
+      redirect_to root_path, notice: 'you successfully delete protos'
     else
       redirect_to root_path, alert: 'please delete agein'
     end
