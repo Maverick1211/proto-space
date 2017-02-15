@@ -4,5 +4,5 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   validates :name, presence: true
   has_many :protos
-  has_many :comments
+  has_many :comments, dependent: :destroy
 end
