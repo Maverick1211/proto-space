@@ -26,6 +26,28 @@ class ProtosController < ApplicationController
     @comment = Comment.new
   end
 
+  def edit
+    @proto = Proto.find(params[:id])
+  end
+
+  def update
+    @proto = Proto.find(params[:id])
+    if @proto.update
+      redirect_to root_path
+    else
+      redirect_to edit_proto_path(@proto), notice: 'please edit agein'
+    end
+  end
+
+  def destroy
+    @proto = Proto.find(params[:id])
+    if @proto.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path, alert: 'please delete agein'
+    end
+  end
+
   private
 
   def proto_params
