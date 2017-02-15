@@ -33,9 +33,9 @@ class ProtosController < ApplicationController
   def update
     @proto = Proto.find(params[:id])
     if @proto.update(proto_params)
-      redirect_to root_path
+      redirect_to root_path, notice: 'you successfully updated proto'
     else
-      redirect_to edit_proto_path(@proto), notice: 'please edit agein'
+      redirect_to edit_proto_path(@proto), alert: 'please edit agein'
     end
   end
 
