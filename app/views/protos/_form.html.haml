@@ -6,7 +6,7 @@
     .row
       .col-md-12
         .cover-image-upload
-\          = f.fields_for :images, @proto.main_picture do |m|
+          = f.fields_for :images, @proto.main_picture do |m|
             = m.file_field :image, aria: { required:"true" }
             = m.hidden_field :role
       .col-md-12

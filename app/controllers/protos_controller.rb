@@ -16,7 +16,7 @@ class ProtosController < ApplicationController
     else
       @proto = Proto.new
       @proto.assign_attributes(proto_params.except(:images_attributes))
-      flash.now[:notice] = 'create proto again'
+      flash.now[:alert] = 'create proto again'
       render action: :new
     end
   end

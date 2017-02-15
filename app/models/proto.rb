@@ -11,6 +11,8 @@ class Proto < ApplicationRecord
 
   validates :title, :catchcopy, :concept, presence: true
 
+  validate :main_image_validation
+
   def main_picture
     images.select(&:main?)
   end
@@ -27,5 +29,11 @@ class Proto < ApplicationRecord
 
   def build_sub_images
     Settings[:SUB_IMAGES_NUMBER].times { images << Image.new(role: :sub) }
+  end
+
+  def main_image_validation
+    main_image = images.find(&:main?)
+    return if main_image.valid?
+    errors.add(:proto, 'main image is necessarry')
   end
 end
