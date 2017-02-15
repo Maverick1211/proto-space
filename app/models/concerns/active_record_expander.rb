@@ -22,7 +22,7 @@ module ActiveRecordExpander
 
       _validators.map do |attr, validators|
         attr if validators.map(&:class).include?(validator)
-      end
+      end.reject(&:nil?)
     end
   end
 end

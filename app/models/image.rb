@@ -3,4 +3,6 @@ class Image < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   belongs_to :proto, required: false
+
+  validates :image, presence: true
 end

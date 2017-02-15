@@ -1,0 +1,7 @@
+.media
+  .media-left
+    = link_to "#{comment.user.name}", user_path(comment.user)
+    = image_tag comment.user.avatar.url, class: 'media-object user-image'
+  .media-body
+    %p
+      = comment.text

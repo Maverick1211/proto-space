@@ -1,0 +1,27 @@
+.container.proto-new
+  = form_for @proto do |f|
+    %header.row.user-nav.row
+      .col-md-12
+        = f.text_field :title, placeholder: "Title", class: "proto-new-title",required: 'required'
+    .row
+      .col-md-12
+        .cover-image-upload
+          = f.fields_for :images, @proto.main_picture do |m|
+            = m.file_field :image, aria: { required:"true" }
+            = m.hidden_field :role
+      .col-md-12
+        %ul.proto-sub-list.list-group
+          = f.fields_for :images, @proto.sub_images do |s|
+            %li.list-group-item.col-md-4
+              .image-upload
+                = s.file_field :image
+          .add_field.image-upload-plus
+            = link_to_add_fields "+", f, :images
+    .row.proto-description
+      .col-md-12
+        = f.text_field :catchcopy, placeholder: "Catch Copy",required: 'required'
+      .col-md-12
+        = f.text_area :concept, cols: "30", rows: "4", placeholder: "Concept",required: 'required'
+    .row.text-center.proto-btn
+      %button.btn.btn-lg.btn-primary.btn-block
+        = f.submit "Publish", class: 'publish_button'
