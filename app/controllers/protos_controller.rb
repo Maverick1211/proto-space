@@ -47,8 +47,7 @@ class ProtosController < ApplicationController
     if @proto.destroy
       redirect_to root_path, notice: 'you successfully delete protos'
     else
-      flash[:alert] = 'please delete agein'
-      render action: :index
+      redirect_to root_path, alert: 'please delete agein'
     end
   end
 
