@@ -35,7 +35,10 @@ class ProtosController < ApplicationController
     if @proto.update(proto_params)
       redirect_to root_path, notice: 'you successfully updated proto'
     else
-      redirect_to edit_proto_path(@proto), alert: 'please edit agein'
+      @proto = Proto.find(params[:id])
+      @proto.assign_attributes(proto_params.except(:images_attributes))
+      flash.now[:alert] = 'please edit again'
+      render action: :edit
     end
   end
 
@@ -44,7 +47,8 @@ class ProtosController < ApplicationController
     if @proto.destroy
       redirect_to root_path, notice: 'you successfully delete protos'
     else
-      redirect_to root_path, alert: 'please delete agein'
+      flash[:alert] = 'please delete agein'
+      render action: :index
     end
   end
 
