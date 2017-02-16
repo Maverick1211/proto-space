@@ -26,6 +26,31 @@ class ProtosController < ApplicationController
     @comment = Comment.new
   end
 
+  def edit
+    @proto = Proto.find(params[:id])
+  end
+
+  def update
+    @proto = Proto.find(params[:id])
+    if @proto.update(proto_params)
+      redirect_to root_path, notice: 'you successfully updated proto'
+    else
+      @proto = Proto.find(params[:id])
+      @proto.assign_attributes(proto_params.except(:images_attributes))
+      flash.now[:alert] = 'please edit again'
+      render action: :edit
+    end
+  end
+
+  def destroy
+    @proto = Proto.find(params[:id])
+    if @proto.destroy
+      redirect_to root_path, notice: 'you successfully delete protos'
+    else
+      redirect_to root_path, alert: 'please delete agein'
+    end
+  end
+
   private
 
   def proto_params
