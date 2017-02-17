@@ -9,9 +9,14 @@ class Proto < ApplicationRecord
   has_many :images
   has_many :comments, dependent: :destroy
   has_one :main_image, -> { where role: 'main' }, class_name: 'Image'
+  has_many :likes, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, :catchcopy, :concept, presence: true
+
+  def like_user(user_id)
+    likes.find_by(user_id: user_id)
+  end
 
   def main_picture
     images.select(&:main?)
