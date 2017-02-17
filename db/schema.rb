@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201101048) do
+ActiveRecord::Schema.define(version: 20170217040249) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "text",       limit: 65535, null: false
+    t.integer  "user_id",                  null: false
+    t.integer  "proto_id",                 null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["proto_id"], name: "index_comments_on_proto_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "image"
@@ -22,13 +32,23 @@ ActiveRecord::Schema.define(version: 20170201101048) do
     t.index ["role"], name: "index_images_on_role", using: :btree
   end
 
-  create_table "protos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                    null: false
-    t.string   "catchcopy",                null: false
-    t.text     "concept",    limit: 65535, null: false
+  create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "proto_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proto_id"], name: "index_likes_on_proto_id", using: :btree
+    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
+
+  create_table "protos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                                 null: false
+    t.string   "catchcopy",                             null: false
+    t.text     "concept",     limit: 65535,             null: false
+    t.integer  "user_id"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "likes_count",               default: 0
     t.index ["title"], name: "index_protos_on_title", using: :btree
     t.index ["user_id"], name: "index_protos_on_user_id", using: :btree
   end
@@ -56,4 +76,6 @@ ActiveRecord::Schema.define(version: 20170201101048) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "comments", "protos"
+  add_foreign_key "comments", "users"
 end
