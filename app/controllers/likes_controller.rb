@@ -6,7 +6,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    like = Like.find_by(user_id: current_user.id, proto_id: params[:proto_id])
+    like = Like.find(params[:id])
     like.destroy
   end
 
