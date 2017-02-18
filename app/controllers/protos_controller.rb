@@ -1,6 +1,6 @@
 class ProtosController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_proto, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i(index show)
+  before_action :set_proto, only: %i(show edit update destroy)                                
 
   def index
     @protos = Proto.includes(:images).all

@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_action :total_likes, :set_proto, only: [:create, :destroy]
+  before_action :total_likes, :set_proto, only: %i(create destroy)
 
   def create
     Like.create(user_id: current_user.id, proto_id: params[:proto_id])
