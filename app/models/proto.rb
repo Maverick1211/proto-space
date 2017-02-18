@@ -18,10 +18,6 @@ class Proto < ApplicationRecord
     likes.find_by(user_id: user_id)
   end
 
-  def main_picture
-    images.select(&:main?)
-  end
-
   def sub_images
     images.select(&:sub?)
   end
@@ -29,7 +25,7 @@ class Proto < ApplicationRecord
   private
 
   def build_main_image
-    images << Image.new(role: 'main')
+    self.main_image = Image.new(role: 'main')
   end
 
   def build_sub_images
