@@ -1,1 +1,1 @@
-$("#js-likes").html("#{escape_javascript(render 'like', { proto: @proto, likes: @likes.length, like: @proto.like_user(current_user) })}");
+$("#js-likes").html("#{escape_javascript(render 'like', { proto: @proto, likes_count: @likes.length, like: @proto.like_user(current_user)})}");

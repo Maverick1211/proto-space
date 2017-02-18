@@ -13,7 +13,7 @@
             %span.degree
               = @proto.user.position
     .col-md-6.text-right#js-likes
-      = render 'likes/like', { proto: @proto, likes: @proto.likes_count, like: @proto.like_user(current_user) }
+      = render 'likes/like', { proto: @proto, likes_count: @proto.likes_count }
   .row
     .col-md-9
       = image_tag @proto.main_image.image_url, class: 'img-responsive proto-image'
