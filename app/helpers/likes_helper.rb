@@ -1,7 +1,7 @@
 module LikesHelper
   def like_button(proto)
-    if user_signed_in? && proto.like_user(current_user)
-      like = proto.like_user(current_user)
+    if user_signed_in? && current_user.like(proto)
+      like = current_user.like(proto)
       button_to [proto, like], { method: :delete, remote: true } do
         yield
       end
@@ -17,14 +17,10 @@ module LikesHelper
   end
 
   def like_image(proto)
-    if user_signed_in? && proto.like_user(current_user)
+    if user_signed_in? && current_user.like(proto)
       image_tag('icon_red_heart.svg')
     else
       image_tag('icon_heart.svg')
     end
-  end
-
-  def likes_count(likes)
-    content_tag(:span, likes)
   end
 end
