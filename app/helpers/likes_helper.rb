@@ -1,26 +1,26 @@
 module LikesHelper
-  def user_login?(user_condition, user_likes, proto, likes)
-    if user_condition
-      user_liked?(user_likes, proto, likes)
+  def like_button(proto)
+    if user_signed_in? && proto.like_user(current_user)
+      like = proto.like_user(current_user)
+      button_to [proto, like], { method: :delete, remote: true } do
+        yield
+      end
+    elsif user_signed_in?
+      button_to proto_likes_path(proto), remote: true do
+        yield
+      end
     else
       button_to new_user_session_path do
-        "#{image_tag('icon_heart.svg')}
-         #{likes_count(likes)}".html_safe
+        yield
       end
     end
   end
 
-  def user_liked?(condition, proto, likes)
-    if like = condition
-      button_to proto_like_path(proto, like), method: :delete, id: 'like-buttons', remote: true do
-        "#{image_tag('icon_red_heart.svg')}
-         #{likes_count(likes)}".html_safe
-      end
+  def like_image(proto)
+    if user_signed_in? && proto.like_user(current_user)
+      image_tag('icon_red_heart.svg')
     else
-      button_to proto_likes_path(proto), id: 'like-buttons', remote: true do
-        "#{image_tag('icon_heart.svg')}
-         #{likes_count(likes)}".html_safe
-      end
+      image_tag('icon_heart.svg')
     end
   end
 
