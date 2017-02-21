@@ -3,7 +3,7 @@ class ProtosController < ApplicationController
   before_action :set_proto, only: %i(show edit update destroy)
 
   def index
-    @protos = Proto.includes(:images).all
+    @protos = Proto.includes(:images).order('created_at ASC')
   end
 
   def new
