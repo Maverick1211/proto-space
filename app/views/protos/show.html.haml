@@ -12,11 +12,8 @@
             = link_to "by #{@proto.user.name}", user_path(@proto.user)
             %span.degree
               = @proto.user.position
-    .col-md-6.text-right
-      %button.btn.btn-default
-        = image_tag("icon_heart.svg")
-        Like
-        %span.num 20
+    .col-md-6.text-right#js-likes
+      = render 'likes/like', { proto: @proto, likes_count: @proto.likes_count }
   .row
     .col-md-9
       = image_tag @proto.main_image.image_url, class: 'img-responsive proto-image'

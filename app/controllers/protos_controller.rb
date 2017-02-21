@@ -1,5 +1,6 @@
 class ProtosController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: %i(index show)
+  before_action :set_proto, only: %i(show edit update destroy)
 
   def index
     @protos = Proto.includes(:images).all
@@ -22,16 +23,12 @@ class ProtosController < ApplicationController
   end
 
   def show
-    @proto = Proto.find(params[:id])
     @comment = Comment.new
   end
 
-  def edit
-    @proto = Proto.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @proto = Proto.find(params[:id])
     if @proto.update(proto_params)
       redirect_to root_path, notice: 'you successfully updated proto'
     else
@@ -43,7 +40,6 @@ class ProtosController < ApplicationController
   end
 
   def destroy
-    @proto = Proto.find(params[:id])
     if @proto.destroy
       redirect_to root_path, notice: 'you successfully delete protos'
     else
@@ -60,5 +56,9 @@ class ProtosController < ApplicationController
       :concept,
       images_attributes: [:id, :image, :role]
       )
+  end
+
+  def set_proto
+    @proto = Proto.find(params[:id])
   end
 end
