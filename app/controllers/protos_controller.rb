@@ -3,7 +3,12 @@ class ProtosController < ApplicationController
   before_action :set_proto, only: %i(show edit update destroy)
 
   def index
-    @protos = Proto.includes(:images).all
+    @protos = case params[:sortby]
+              when "newly"
+                Proto.includes(:images).newly
+              else
+                Proto.includes(:images).popular
+              end
   end
 
   def new

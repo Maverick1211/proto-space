@@ -7,19 +7,19 @@
     .row
       %ul.nav.nav-pills.col-lg-11
         %li.active{role: "presentation"}
-          %a{href: "#"} Popular PROTO
+          = link_to 'Popular PROTO', root_path
         %li{role: "presentation"}
-          %a{href: "#"} Newest PROTO
+          = link_to 'Newest PROTO', root_path(sortby: "newly")
       %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
 
 .container.proto-list
-  .row
-    = render @protos
+  .row#js-sort
+    = render partial: 'protos/proto', collection: @protos
 .text-center
   %ul.pagination
     %li.disabled
       %a{"aria-label" => "Previous", href: "#"}
-        %span{"aria-hidden" => "true"} «
+        %span{"aria-hidden" => "true"}
     %li.active
       %a{href: "#"}
         1
@@ -34,4 +34,4 @@
       %a{href: "#"} 5
     %li
       %a{"aria-label": "Next", href: "#"}
-        %span{"aria-hidden": "true"} »
+        %span{"aria-hidden": "true"}

@@ -14,6 +14,9 @@ class Proto < ApplicationRecord
 
   validates :title, :catchcopy, :concept, presence: true
 
+  scope :popular, -> { order(likes_count: :desc) }
+  scope :newly, -> { order(created_at: :desc) }
+
   def like_user(user_id)
     likes.find_by(user_id: user_id)
   end
