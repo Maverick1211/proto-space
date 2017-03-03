@@ -10,8 +10,7 @@
           = link_to 'Popular PROTO', root_path
         %li{role: "presentation"}
           = link_to 'Newest PROTO', root_path(sortby: "newly")
-      %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
-
+      = link_to 'View Tags', tags_path, class: "btn btn-default col-lg-1"
 .container.proto-list
   .row#js-sort
     = render partial: 'protos/proto', collection: @protos

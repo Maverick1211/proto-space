@@ -2,7 +2,7 @@
   .dropdown.drop_menu_location
     %button#dropdownMenu.btn.btn-default.dropdown-toggle{ aria: { expanded: 'false' }, data: { toggle: 'dropdown' }, type: 'button'}
       Action
-    %ul.dropdown-menu{ aria: { labelledby: 'dropdownMenu1' } }                      
+    %ul.dropdown-menu{ aria: { labelledby: 'dropdownMenu1' } }
       %li
         = link_to 'Delete', proto_path(proto), method: :delete, rel: "nofollow", data: { method: "delete" }
       %li
@@ -18,7 +18,6 @@
         .proto-posted
           = proto.created_at.to_s(:customized)
       %ul.proto-tag-list.list-inline
-        %li
-          %a{href: "#", class: "btn btn-default"} iPad
-        %li
-          %a{href: "#", class: "btn btn-default"} wireframe
+        - proto.tags.each do |tag|
+          %li
+            =link_to "#{tag.name}", tag_path(tag.id)
