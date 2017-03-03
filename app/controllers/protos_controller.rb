@@ -60,7 +60,7 @@ class ProtosController < ApplicationController
       :catchcopy,
       :concept,
       images_attributes: [:id, :image, :role]
-      )
+      ).merge(tag_list: params[:proto][:tag])
   end
 
   def set_proto
