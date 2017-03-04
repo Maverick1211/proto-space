@@ -20,4 +20,4 @@
       %ul.proto-tag-list.list-inline
         - proto.tags.each do |tag|
           %li
-            =link_to "#{tag.name}", tag_path(tag.id)
+            = link_to tag.name, tag_path(tag.id)

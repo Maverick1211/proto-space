@@ -55,12 +55,14 @@ class ProtosController < ApplicationController
   private
 
   def proto_params
+    binding.pry
     params.require(:proto).permit(
       :title,
       :catchcopy,
       :concept,
+      tag_list: [],
       images_attributes: [:id, :image, :role]
-      ).merge(tag_list: params[:proto][:tag])
+      )
   end
 
   def set_proto

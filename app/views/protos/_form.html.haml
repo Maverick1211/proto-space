@@ -23,9 +23,10 @@
       .col-md-12
         = f.text_area :concept, cols: "30", rows: "4", placeholder: "Concept",required: 'required'
       .col-md-12
-        = text_field_tag "proto[tag][]", "", placeholder: "Web Design"
-        = text_field_tag "proto[tag][]", "", placeholder: "UI"
-        = text_field_tag "proto[tag][]", "", placeholder: "Application"
+        - binding.pry
+        = text_field_tag "proto[tag_list][]", "", placeholder: "Web Design"
+        = text_field_tag "proto[tag_list][]", "", placeholder: "UI"
+        = text_field_tag "proto[tag_list][]", "", placeholder: "Application"
     .row.text-center.proto-btn
       %button.btn.btn-lg.btn-primary.btn-block
         = f.submit "Publish", class: 'publish_button'
