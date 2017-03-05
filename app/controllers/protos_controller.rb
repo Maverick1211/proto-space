@@ -55,7 +55,6 @@ class ProtosController < ApplicationController
   private
 
   def proto_params
-    binding.pry
     params.require(:proto).permit(
       :title,
       :catchcopy,
