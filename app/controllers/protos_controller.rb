@@ -59,6 +59,7 @@ class ProtosController < ApplicationController
       :title,
       :catchcopy,
       :concept,
+      tag_list: [],
       images_attributes: [:id, :image, :role]
       )
   end

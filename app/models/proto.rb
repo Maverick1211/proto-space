@@ -17,6 +17,8 @@ class Proto < ApplicationRecord
   scope :popular, -> { order(likes_count: :desc) }
   scope :newly, -> { order(created_at: :desc) }
 
+  acts_as_taggable_on :tags
+
   def like_user(user_id)
     likes.find_by(user_id: user_id)
   end
